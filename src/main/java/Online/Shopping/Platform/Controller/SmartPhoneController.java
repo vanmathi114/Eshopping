@@ -5,10 +5,9 @@ import Online.Shopping.Platform.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-
 import java.net.URI;
 
 @RestController
@@ -20,6 +19,7 @@ public class SmartPhoneController {
 
     // Get all smartphones
     @GetMapping
+    @PreAuthorize("hasRole('admin')")
     public ResponseEntity<List<Smartphone>> getAllSmartphones() {
         try{
             List<Smartphone> smartPhones=smartPhoneService.getAllSmartphone();
@@ -30,7 +30,6 @@ public class SmartPhoneController {
         } catch(Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-
     }
 
     // Get a specific smartphone by ID
@@ -54,7 +53,6 @@ public class SmartPhoneController {
         } catch(Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-
     }
 
     // Update the cost of a smartphone (for admin use)

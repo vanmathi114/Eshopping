@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Smartphone extends Product {
-    public Smartphone(String Id, String name, int stock, double cost, String model) {
-        super(Id, name, stock, cost, model);
+    public Smartphone(String id, String name, int stock, double cost, String model) {
+        super(id, name, stock, cost, model);
     }
 }
